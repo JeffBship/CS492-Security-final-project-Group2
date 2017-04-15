@@ -1,31 +1,90 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+Adrian and Jeff's
+CS492 Final Project.
+
+
+File operations based on example in:
+"Loading, Editing, and Saving a Text File in HTML5 Using Javascript"
+https://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-text-file-in-html5-using-javascrip/
+(no author given)
+
+
 -->
 <html>
   <head>
-    <title>TODO supply a title</title>
+    <title>SimpleSub DEcrypter</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheet.css">
     <script src="javascript.js"></script>
   </head>
+<body>
+<font size="6" face="verdana">Ceasar Tool: Simple Sub cryptanalyzer</font>  
+
+ 
+<table>
+  <tr>
+    <td>
+      Cyphertext file:
+      <input type="file" id="cypherToLoad">
+    </td>
+    <td><button onclick="loadFile()">Load File</button><td>
+  </tr>
   
-  <body>.
-    
-    
-    <h1>Ceasar Tool:</h1>
-    <h3> Cryptanalysis for simple substitution cyphers. </h3>
-    <button onclick="myFunction()">Try it</button>
-      
-      
-    
-    
-    
-    
-    
-    <p>TODO write content</p>
-  </body>
+  <tr>
+    <td><br/>Cypher text:</td>
+  </tr>
+  
+  <tr>
+    <td colspan="3">
+      <textarea id="cypherText" cols="80" rows="8"></textarea>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <br/>
+      <input  id="keyinput" 
+              value ="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+              style="width:240px;"
+              maxlength="26" >
+      <button onclick="UseFrequencies()">Use Frequencies</button>
+      <button onclick="Button()">Button</button>
+      <button onclick="Button()">Button</button>
+      <button onclick="BruteForce()">Brute Force</button>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      maps to <br/>
+      <font size="2" face="verdana">
+            ABCDEFGHIJKLMNOPQRSTUVWXYZ</font>
+      <br/>
+    </td>
+  </tr>
+  
+  
+  
+  <tr>
+    <td><br/>Plain text:
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <textarea id="plainText" cols="80" rows="8"></textarea>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>Filename to Save As:
+    <input id="saveAs"></input></td>
+    <td><button onclick="saveAs()">Save Plain</button></td>
+  </tr>
+</table>
+ 
+
+ 
+</body>
 </html>
