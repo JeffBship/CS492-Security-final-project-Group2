@@ -24,6 +24,24 @@ function randomize(){
   document.getElementById("keyinput").value = randomKey; 
 }
 
+function offset(){
+  alert("hello");
+  var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var offsetKey = "";
+  var offset = parseInt(document.getElementById("offset").value);
+  var index, keyIndex, nextChar;
+  
+  //It doesn't like negative numbers for offset
+  while (offset<0) offset += 26;
+  
+  for(index=0;index<26; index++){
+    //this picks a random char from aphabet, adds it to key, and deletes it from alphabet
+    keyIndex = ( index + offset) % 26;
+    offsetKey += alphabet.charAt(keyIndex);
+    }
+  document.getElementById("keyinput").value = offsetKey; 
+}
+
 
 
 function encrypt(){
