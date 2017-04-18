@@ -21,22 +21,6 @@ function loadFile(){
   fileReader.readAsText(cypherfile, "UTF-8");
 }
 
-function randomize(){
-  var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var randomKey = "";
-  var index, random, nextChar;
-  
-  for(index=0;index<26; index++){
-    //this picks a random char from aphabet, adds it to key, and deletes it from alphabet
-    random = Math.floor(  Math.random()*(alphabet.length));
-    nextChar = alphabet.charAt(random);
-    randomKey += nextChar;
-    alphabet = alphabet.replace(nextChar,'');
-    }
-  document.getElementById("keyinput").value = randomKey; 
-}
-
-
 
 function encrypt(){
   var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -91,3 +75,18 @@ function destroyClickedElement(event)
 {
     document.body.removeChild(event.target);
 }                 
+
+
+function setKey(){
+  var lowAlpha = "abcdefghijklmnopqrstuvwxyz";
+  var upAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var key = "";
+  
+  key += upAlpha.charAt( lowAlpha.indexOf(document.getElementById("Amap").value) );
+  key += upAlpha.charAt( lowAlpha.indexOf(document.getElementById("Bmap").value) );
+  key += upAlpha.charAt( lowAlpha.indexOf(document.getElementById("Cmap").value) );
+  key += upAlpha.charAt( lowAlpha.indexOf(document.getElementById("Dmap").value) );
+  
+  
+  document.getElementById("key").value = key;
+}

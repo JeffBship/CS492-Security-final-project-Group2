@@ -22,15 +22,81 @@ https://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-
 <body>
 <font size="6" face="verdana">Ceasar Tool: Simple Sub cryptanalyzer</font>  
 
- 
 <table>
   <tr>
     <td>
       Cyphertext file:
       <input type="file" id="cypherToLoad">
     </td>
-    <td><button onclick="loadFile()">Load File</button><td>
-  </tr>
+    <td>
+      <button onclick="loadFile()">Load File</button>
+    </td>
+    <td rowspan="8" width="10"  >
+      <!-- This is just for spacing  -->
+    </td>
+    <td rowspan="8" width="20"  >
+      <font size = 4>
+      A   <br>
+      B   <br>
+      C   <br>
+      D   <br>
+      E   <br>
+      F   <br>
+      G   <br>
+      H   <br>
+      I   <br>
+      J   <br>
+      K   <br>
+      L   <br>
+      M   <br>
+      N   <br>
+      O   <br>
+      P   <br>
+      Q   <br>
+      R   <br>
+      S   <br>
+      T   <br>
+      U   <br>
+      V   <br>
+      W   <br>
+      X   <br>
+      Y   <br>
+      Z   <br>
+      </font>
+    </td>
+    <td rowspan="8" width="25"  >
+     <input type="text" class="charBox" id="Amap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Bmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Cmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Dmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Emap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Fmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Gmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Hmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Imap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Jmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Kmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Lmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Mmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Nmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Omap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Pmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Qmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Rmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Smap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Tmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Umap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Vmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Wmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Xmap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Ymap" maxlength="1" value = "" > <br>
+     <input type="text" class="charBox" id="Zmap" maxlength="1" value = "" > <br>
+    </td>
+    
+    <td rowspan="8" width="25"  >
+      <button onclick="setKey()">Set Key</button>
+    </td>
+  
   
   <tr>
     <td><br/>Cypher text:</td>
@@ -45,10 +111,11 @@ https://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-
   <tr>
     <td>
       <br/>
-      <input  id="keyinput" 
+      <input  id="key" 
               value ="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
               style="width:240px;"
-              maxlength="26" >
+              maxlength="26" 
+              readonly="readonly">
       <button onclick="UseFrequencies()">Use Frequencies</button>
       <button onclick="Button()">Button</button>
       <button onclick="Button()">Try all offsets</button>
@@ -58,11 +125,10 @@ https://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-
   
   <tr>
     <td>
-      maps to <br/>
-      <font size="2" face="verdana">
-            abcdefghijklmnopqrstuvwxyz</font>
-      <br/>
+      <div id="warning">
+        ##There are no repeats or <font color="red">WARNING THERE ARE REPEATS</font>##  </div>       
     </td>
+    
   </tr>
   
   
