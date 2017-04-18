@@ -25,7 +25,6 @@ function randomize(){
 }
 
 function offset(){
-  alert("hello");
   var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var offsetKey = "";
   var offset = parseInt(document.getElementById("offset").value);

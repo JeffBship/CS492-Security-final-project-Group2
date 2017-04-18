@@ -11,6 +11,7 @@
 //                  2.406,2.360,2.228,2.015,1.974,1.929,1.492,0.978,0.772,0.153,0.150,0.095,0.074};
                  
 function loadFile(){
+  //alert("in load file");
   var cypherfile = document.getElementById("cypherToLoad").files[0];
   var fileReader = new FileReader();
   fileReader.onload = function(fileLoadedEvent) 
@@ -22,32 +23,85 @@ function loadFile(){
 }
 
 
-function encrypt(){
-  var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var key = document.getElementById("keyinput").value;
-  var plainText = document.getElementById("plaintext").value.toUpperCase();
-  var cypherText = "";
+function decrypt(){
+  //THIS IS ALL MESSED UP WITH CYPHER V. PLAIN, GO OVER IT CAREFULL
+  
+  
+  var lowAlpha = "abcdefghijklmnopqrstuvwxyz";
+  var upAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var key = document.getElementById("key").value;
+  var plainText = "";
+  var cypherText = document.getElementById("cypherText").value.toUpperCase();
   var index, random, nextChar;
   var plainChar, cypherChar;
   var location;
   
   //plaintext = plaintext.toUpperCase;
   
-  for(index=0;index<plainText.length   ; index++){
-    //this picks a random char from aphabet, adds it to key, and deletes it from alphabet
-    plainChar = plainText.charAt(index);
-    location = alphabet.indexOf(plainChar);  // this will be -1 if not in alphabet string
+  for(index=0;index<cypherText.length; index++){
+    cypherChar = cypherText.charAt(index);
+    location = upAlpha.indexOf(cypherChar); 
     if (location === -1){
-      cypherText += plainChar; // copy all non-aphabet char straight to cyphertext
+      plainText += cypherChar; // copy all non-aphabet char straight over
       } else {
-        cypherChar = key.charAt(location); // copy all alphabet chars via key
-        cypherText += cypherChar;
+        plainChar = key.charAt(location); // copy all alphabet chars via key
+        plainText += plainChar;
       }
     }
-  document.getElementById("cypherText").value = cypherText; 
+  document.getElementById("plainText").value = plainText; 
 }
 
 
+
+function UseFrequencies(){
+  //alert("use freq");
+  var lowAlpha = "abcdefghijklmnopqrstuvwxyz";
+  var upAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var newKey = "--------------------------";
+  var freqOrder   = ['e','t','a','o','i','n','s','h','r','d','l','c','u',
+                     'm','w','f','g','y','p','b','v','k','j','x','q','z'];
+  var freqCount   = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];   
+  var freqCountSort  = [];
+  var cypherText = document.getElementById("cypherText").value.toUpperCase();
+  var index = 0;
+  var location = 0;
+  var cypherChar = "";
+  
+  for(index=0;index<cypherText.length; index++){
+    cypherChar = cypherText.charAt(index);
+    location = upAlpha.indexOf(cypherChar);
+    if (location >= 0) freqCount[location]++;
+    }
+    
+  freqCountSort = freqCount;
+  freqCountSort.sort( function(a,b) {return a-b;} );
+  freqCountSort.reverse(); //freqCountSort is not the frequencies in order
+  //we want the matching lowAlpha for the freqCount 
+  
+  for(index=0;index<26; index++){
+    var nextChar = freqOrder[index];  // next char by freqency
+    var count = freqCountSort[index]; // next count
+    var where = freqCount.indexOf(count);
+    //alert("here");
+    newKey = newKey.substr(0, where) + nextChar + newKey.substr(where + 1);
+    }
+  
+  
+  
+  var displayString = "";
+  for(index=0;index<26; index++){
+    displayString += freqCountSort[index] + " ";
+    }
+  document.getElementById("plainText").value = newKey;
+  document.getElementById("key").value = newKey;
+  
+  
+  
+  
+  
+  
+    
+}
 
 
 
@@ -81,11 +135,34 @@ function setKey(){
   var lowAlpha = "abcdefghijklmnopqrstuvwxyz";
   var upAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var key = "";
-  
-  key += upAlpha.charAt( lowAlpha.indexOf(document.getElementById("Amap").value) );
-  key += upAlpha.charAt( lowAlpha.indexOf(document.getElementById("Bmap").value) );
-  key += upAlpha.charAt( lowAlpha.indexOf(document.getElementById("Cmap").value) );
-  key += upAlpha.charAt( lowAlpha.indexOf(document.getElementById("Dmap").value) );
+  var k = "";
+   
+  k = document.getElementById("Amap").value; key += k;
+  k = document.getElementById("Bmap").value; key += k;
+  k = document.getElementById("Cmap").value; key += k;
+  k = document.getElementById("Dmap").value; key += k;
+  k = document.getElementById("Emap").value; key += k;
+  k = document.getElementById("Fmap").value; key += k;
+  k = document.getElementById("Gmap").value; key += k;
+  k = document.getElementById("Hmap").value; key += k;
+  k = document.getElementById("Imap").value; key += k;
+  k = document.getElementById("Jmap").value; key += k;
+  k = document.getElementById("Kmap").value; key += k;
+  k = document.getElementById("Lmap").value; key += k;
+  k = document.getElementById("Mmap").value; key += k;
+  k = document.getElementById("Nmap").value; key += k;
+  k = document.getElementById("Omap").value; key += k;
+  k = document.getElementById("Pmap").value; key += k;
+  k = document.getElementById("Qmap").value; key += k;
+  k = document.getElementById("Rmap").value; key += k;
+  k = document.getElementById("Smap").value; key += k;
+  k = document.getElementById("Tmap").value; key += k;
+  k = document.getElementById("Umap").value; key += k;
+  k = document.getElementById("Vmap").value; key += k;
+  k = document.getElementById("Wmap").value; key += k;
+  k = document.getElementById("Xmap").value; key += k;
+  k = document.getElementById("Ymap").value; key += k;
+  k = document.getElementById("Zmap").value; key += k;
   
   
   document.getElementById("key").value = key;
