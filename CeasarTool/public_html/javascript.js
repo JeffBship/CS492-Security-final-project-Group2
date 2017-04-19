@@ -24,9 +24,39 @@ function loadFile(){
 
 
 function decrypt(){
+  var newKey = "";
+  newKey += document.getElementById("Amap").value;
+  newKey += document.getElementById("Bmap").value;
+  newKey += document.getElementById("Cmap").value;
+  newKey += document.getElementById("Dmap").value;
+  newKey += document.getElementById("Emap").value;
+  newKey += document.getElementById("Fmap").value;
+  newKey += document.getElementById("Gmap").value;
+  newKey += document.getElementById("Hmap").value;
+  newKey += document.getElementById("Imap").value;
+  newKey += document.getElementById("Jmap").value;
+  newKey += document.getElementById("Kmap").value;
+  newKey += document.getElementById("Lmap").value;
+  newKey += document.getElementById("Mmap").value;
+  newKey += document.getElementById("Nmap").value;
+  newKey += document.getElementById("Omap").value;
+  newKey += document.getElementById("Pmap").value;
+  newKey += document.getElementById("Qmap").value;
+  newKey += document.getElementById("Rmap").value;
+  newKey += document.getElementById("Smap").value;
+  newKey += document.getElementById("Tmap").value;
+  newKey += document.getElementById("Umap").value;
+  newKey += document.getElementById("Vmap").value;
+  newKey += document.getElementById("Wmap").value;
+  newKey += document.getElementById("Xmap").value;
+  newKey += document.getElementById("Ymap").value;
+  newKey += document.getElementById("Zmap").value;
+  document.getElementById("key").value = newKey;
+  
+  
+  
+  
   //THIS IS ALL MESSED UP WITH CYPHER V. PLAIN, GO OVER IT CAREFULL
-  
-  
   var lowAlpha = "abcdefghijklmnopqrstuvwxyz";
   var upAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var key = document.getElementById("key").value;
@@ -57,50 +87,109 @@ function UseFrequencies(){
   //alert("use freq");
   var lowAlpha = "abcdefghijklmnopqrstuvwxyz";
   var upAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var newKey = "--------------------------";
-  var freqOrder   = ['e','t','a','o','i','n','s','h','r','d','l','c','u',
-                     'm','w','f','g','y','p','b','v','k','j','x','q','z'];
+  var keyArray = ['','','','','','','','','','','','','','','','','','','','','','','','','',''];
+  //var freqOrder = "etaoinshrdlcumwfgypbvkjxqz";   //Robert Lewand's Cryptological Mathematics
+  var freqOrder = "etoahinsrldwugfcymbpkvxqjz";      //Lewis Carrol, Alice in Wonderland
+  var thisFreq = ""
+  var freqOrderarray = "";
   var freqCount   = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];   
-  var freqCountSort  = [];
+  var freqCountSort  = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];   
   var cypherText = document.getElementById("cypherText").value.toUpperCase();
   var index = 0;
   var location = 0;
   var cypherChar = "";
+  var text = "SHOWING STATS FOR TESTING:   \n";
   
   for(index=0;index<cypherText.length; index++){
     cypherChar = cypherText.charAt(index);
     location = upAlpha.indexOf(cypherChar);
     if (location >= 0) freqCount[location]++;
     }
+  //sometimes there are equal counts and it messes things up
+  //we might should add some sort of handler method for that
+  //like maybe if there are equals just make them both zero and map to '*' or something.
+  //Should only be an issue for small files. 
+  var repeat = 0;
+  for (var i=0;i<25;i++){
+    for(var j=i+1;j<25;j++){
+      if (freqCount[i]==freqCount[j]){
+        repeat++;
+        text += upAlpha.charAt(i) + "," + upAlpha.charAt(j) + " ";
+      }
+    }
+  }
+  if (repeat > 0){
+    text += "are repeated in the CypherText.  You'll need to adjust those.\n";
+  }
     
-  freqCountSort = freqCount;
+      
+  
+    
+  freqCountSort = freqCount.slice();
   freqCountSort.sort( function(a,b) {return a-b;} );
-  freqCountSort.reverse(); //freqCountSort is not the frequencies in order
-  //we want the matching lowAlpha for the freqCount 
+  freqCountSort.reverse(); //freqCountSort is now the Counts in order
+  //
+  
+    
+  
   
   for(index=0;index<26; index++){
-    var nextChar = freqOrder[index];  // next char by freqency
-    var count = freqCountSort[index]; // next count
+    var count = freqCountSort[index];
     var where = freqCount.indexOf(count);
-    //alert("here");
-    newKey = newKey.substr(0, where) + nextChar + newKey.substr(where + 1);
+    keyArray[where] = freqOrder.charAt(index);
+    thisFreq += lowAlpha[where];
+    /*
+    text += index + "\n " + index + "\n " + 
+            "\n count: " + count +
+            "\n  where" + where +
+            "\n freqOrder.charAt(index): " + freqOrder.charAt(index) + 
+            "\n\n";
+    */
     }
+  text += "thisFreq: " + thisFreq + "\n";  
+  var newKey = keyArray.join('');  
+    
+  text +=     "freqCount is    " + freqCount + "\n" 
+            + "freqCountSort is: " + freqCountSort + "\n" 
+            + "freqOrderarray is: " + freqOrderarray + "\n" 
+            + "newKey is: " + newKey;
   
-  
-  
-  var displayString = "";
-  for(index=0;index<26; index++){
-    displayString += freqCountSort[index] + " ";
-    }
-  document.getElementById("plainText").value = newKey;
+  document.getElementById("plainText").value = text;
   document.getElementById("key").value = newKey;
   
+  document.getElementById("Amap").value = keyArray[0];
+  document.getElementById("Bmap").value = keyArray[1];
+  document.getElementById("Cmap").value = keyArray[2];
+  document.getElementById("Dmap").value = keyArray[3];
+  document.getElementById("Emap").value = keyArray[4];
+  document.getElementById("Fmap").value = keyArray[5];
+  document.getElementById("Gmap").value = keyArray[6];
+  document.getElementById("Hmap").value = keyArray[7];
+  document.getElementById("Imap").value = keyArray[8];
+  document.getElementById("Jmap").value = keyArray[9];
+  document.getElementById("Kmap").value = keyArray[10];
+  document.getElementById("Lmap").value = keyArray[11];
+  document.getElementById("Mmap").value = keyArray[12];
+  document.getElementById("Nmap").value = keyArray[13];
+  document.getElementById("Omap").value = keyArray[14];
+  document.getElementById("Pmap").value = keyArray[15];
+  document.getElementById("Qmap").value = keyArray[16];
+  document.getElementById("Rmap").value = keyArray[17];
+  document.getElementById("Smap").value = keyArray[18];
+  document.getElementById("Tmap").value = keyArray[19];
+  document.getElementById("Umap").value = keyArray[20];
+  document.getElementById("Vmap").value = keyArray[21];
+  document.getElementById("Wmap").value = keyArray[22];
+  document.getElementById("Xmap").value = keyArray[23];
+  document.getElementById("Ymap").value = keyArray[24];
+  document.getElementById("Zmap").value = keyArray[25];
   
   
   
   
   
-    
+  
+  
 }
 
 
@@ -166,4 +255,37 @@ function setKey(){
   
   
   document.getElementById("key").value = key;
+}
+
+function reset(){
+  document.getElementById("Amap").value = "A";
+  document.getElementById("Amap").value = "B";
+  document.getElementById("Amap").value = "C";
+  document.getElementById("Amap").value = "D";
+  document.getElementById("Amap").value = "E";
+  document.getElementById("Amap").value = "F";
+  document.getElementById("Amap").value = "G";
+  document.getElementById("Amap").value = "H";
+  document.getElementById("Amap").value = "I";
+  document.getElementById("Amap").value = "J";
+  document.getElementById("Amap").value = "K";
+  document.getElementById("Amap").value = "L";
+  document.getElementById("Amap").value = "M";
+  document.getElementById("Amap").value = "N";
+  document.getElementById("Amap").value = "O";
+  document.getElementById("Amap").value = "P";
+  document.getElementById("Amap").value = "Q";
+  document.getElementById("Amap").value = "R";
+  document.getElementById("Amap").value = "S";
+  document.getElementById("Amap").value = "T";
+  document.getElementById("Amap").value = "U";
+  document.getElementById("Amap").value = "V";
+  document.getElementById("Amap").value = "W";
+  document.getElementById("Amap").value = "X";
+  document.getElementById("Amap").value = "Y";
+  document.getElementById("Amap").value = "Z";
+  
+  
+  
+  
 }
