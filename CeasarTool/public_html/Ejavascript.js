@@ -26,6 +26,7 @@ function randomize(){
 
 function offset(){
   var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var thisFreq = "";
   var offsetKey = "";
   var offset = parseInt(document.getElementById("offset").value);
   var index, keyIndex, nextChar;
@@ -45,12 +46,16 @@ function offset(){
 
 function encrypt(){
   var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var lowAlpha = "abcdefghijklmnopqrstuvwxyz";
+  var thisFreq = "";
   var key = document.getElementById("keyinput").value;
   var plainText = document.getElementById("plaintext").value.toUpperCase();
   var cypherText = "";
   var index, random, nextChar;
   var plainChar, cypherChar;
   var location;
+  var freqCount   = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];  
+  var freqString = ""
   
   //plaintext = plaintext.toUpperCase;
   
@@ -61,11 +66,23 @@ function encrypt(){
     if (location === -1){
       cypherText += plainChar; // copy all non-aphabet char straight to cyphertext
       } else {
+        freqCount[location]++;  //and give the frequency count
         cypherChar = key.charAt(location); // copy all alphabet chars via key
         cypherText += cypherChar;
       }
     }
   document.getElementById("cypherText").value = cypherText; 
+  
+  var freqCountSort = freqCount.slice();
+  freqCountSort.sort( function(a,b) {return a-b;} );
+  freqCountSort.reverse(); //freqCountSort is now the Counts in order
+  
+  for(index=0;index<26; index++){
+    var count = freqCountSort[index];
+    var where = freqCount.indexOf(count);
+    thisFreq += lowAlpha[where];
+    }
+  document.getElementById("frequency").value = thisFreq;  
 }
 
 

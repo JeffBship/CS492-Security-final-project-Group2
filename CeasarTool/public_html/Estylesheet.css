@@ -34,3 +34,7 @@ textarea#key {
     padding: 15px;
     overflow-y: scroll;
 }
+
+table, th, td {
+    border: 1px solid black;
+}

@@ -87,10 +87,10 @@ function UseFrequencies(){
   //alert("use freq");
   var lowAlpha = "abcdefghijklmnopqrstuvwxyz";
   var upAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var keyArray = ['','','','','','','','','','','','','','','','','','','','','','','','','',''];
+  var keyArray = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
   //var freqOrder = "etaoinshrdlcumwfgypbvkjxqz";   //Robert Lewand's Cryptological Mathematics
   var freqOrder = "etoahinsrldwugfcymbpkvxqjz";      //Lewis Carrol, Alice in Wonderland
-  var thisFreq = ""
+  var thisFreq = "";
   var freqOrderarray = "";
   var freqCount   = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];   
   var freqCountSort  = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];   
@@ -119,7 +119,7 @@ function UseFrequencies(){
     }
   }
   if (repeat > 0){
-    text += "are repeated in the CypherText.  You'll need to adjust those.\n";
+    text += "had same frequency.  You'll need to adjust those.\n";
   }
     
       
@@ -258,34 +258,35 @@ function setKey(){
 }
 
 function reset(){
-  document.getElementById("Amap").value = "A";
-  document.getElementById("Amap").value = "B";
-  document.getElementById("Amap").value = "C";
-  document.getElementById("Amap").value = "D";
-  document.getElementById("Amap").value = "E";
-  document.getElementById("Amap").value = "F";
-  document.getElementById("Amap").value = "G";
-  document.getElementById("Amap").value = "H";
-  document.getElementById("Amap").value = "I";
-  document.getElementById("Amap").value = "J";
-  document.getElementById("Amap").value = "K";
-  document.getElementById("Amap").value = "L";
-  document.getElementById("Amap").value = "M";
-  document.getElementById("Amap").value = "N";
-  document.getElementById("Amap").value = "O";
-  document.getElementById("Amap").value = "P";
-  document.getElementById("Amap").value = "Q";
-  document.getElementById("Amap").value = "R";
-  document.getElementById("Amap").value = "S";
-  document.getElementById("Amap").value = "T";
-  document.getElementById("Amap").value = "U";
-  document.getElementById("Amap").value = "V";
-  document.getElementById("Amap").value = "W";
-  document.getElementById("Amap").value = "X";
-  document.getElementById("Amap").value = "Y";
-  document.getElementById("Amap").value = "Z";
+  //alert("in reset");
+  document.getElementById("Amap").value = 'A';
+  document.getElementById("Bmap").value = 'B';
+  document.getElementById("Cmap").value = 'C';
+  document.getElementById("Dmap").value = 'D';
+  document.getElementById("Emap").value = 'E';
+  document.getElementById("Fmap").value = 'F';
+  document.getElementById("Gmap").value = 'G';
+  document.getElementById("Hmap").value = 'H';
+  document.getElementById("Imap").value = 'I';
+  document.getElementById("Jmap").value = 'J';
+  document.getElementById("Kmap").value = 'K';
+  document.getElementById("Lmap").value = 'L';
+  document.getElementById("Mmap").value = 'M';
+  document.getElementById("Nmap").value = 'N';
+  document.getElementById("Omap").value = 'O';
+  document.getElementById("Pmap").value = 'P';
+  document.getElementById("Qmap").value = 'Q';
+  document.getElementById("Rmap").value = 'R';
+  document.getElementById("Smap").value = 'S';
+  document.getElementById("Tmap").value = 'T';
+  document.getElementById("Umap").value = 'U';
+  document.getElementById("Vmap").value = 'V';
+  document.getElementById("Wmap").value = 'W';
+  document.getElementById("Xmap").value = 'X';
+  document.getElementById("Ymap").value = 'Y';
+  document.getElementById("Zmap").value = 'Z';
   
-  
+  //alert("end of reset");
   
   
 }
