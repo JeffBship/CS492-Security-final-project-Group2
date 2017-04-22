@@ -97,8 +97,6 @@ https://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-
     <td rowspan="8" width="25"  >
       <button onclick="reset()">reset</button>
       <br><br>
-      <button onclick="setKey()">Set Key</button>
-      <br><br>
       <button onclick="decrypt()">Decrypt</button>
     </td>
     
@@ -116,16 +114,15 @@ https://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-
   
   <tr>
     <td>
-      <br/>
-      <input  id="key" 
-              value ="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      Frequency Order in use:<br/>
+      <input  id="frequencyOrder" 
+              value ="etoahinsrldwugfcymbpkvxqjz"
               style="width:240px;"
-              maxlength="26" 
-              readonly="readonly">
+              maxlength="26" >
       <button onclick="UseFrequencies()">Use Frequencies</button>
-      <button onclick="Button()">Button</button>
-      <button onclick="Button()">Try all offsets</button>
-      <button onclick="BruteForce()">Brute Force</button>
+      <!--  <button onclick="Button()">Button</button>          -->
+      <button onclick="Button()">Try offsets</button>     
+      <!--  <button onclick="BruteForce()">Brute Force</button> -->
     </td>
   </tr>
   
