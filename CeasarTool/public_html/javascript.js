@@ -22,57 +22,55 @@ function loadFile(){
   fileReader.readAsText(cypherfile, "UTF-8");
 }
 
+function getKey(){
+  var key = "";
+  key += document.getElementById("Amap").value;
+  key += document.getElementById("Bmap").value;
+  key += document.getElementById("Cmap").value;
+  key += document.getElementById("Dmap").value;
+  key += document.getElementById("Emap").value;
+  key += document.getElementById("Fmap").value;
+  key += document.getElementById("Gmap").value;
+  key += document.getElementById("Hmap").value;
+  key += document.getElementById("Imap").value;
+  key += document.getElementById("Jmap").value;
+  key += document.getElementById("Kmap").value;
+  key += document.getElementById("Lmap").value;
+  key += document.getElementById("Mmap").value;
+  key += document.getElementById("Nmap").value;
+  key += document.getElementById("Omap").value;
+  key += document.getElementById("Pmap").value;
+  key += document.getElementById("Qmap").value;
+  key += document.getElementById("Rmap").value;
+  key += document.getElementById("Smap").value;
+  key += document.getElementById("Tmap").value;
+  key += document.getElementById("Umap").value;
+  key += document.getElementById("Vmap").value;
+  key += document.getElementById("Wmap").value;
+  key += document.getElementById("Xmap").value;
+  key += document.getElementById("Ymap").value;
+  key += document.getElementById("Zmap").value;
+  return key;
+}
+
 
 function decrypt(){
-  var newKey = "";
-  newKey += document.getElementById("Amap").value;
-  newKey += document.getElementById("Bmap").value;
-  newKey += document.getElementById("Cmap").value;
-  newKey += document.getElementById("Dmap").value;
-  newKey += document.getElementById("Emap").value;
-  newKey += document.getElementById("Fmap").value;
-  newKey += document.getElementById("Gmap").value;
-  newKey += document.getElementById("Hmap").value;
-  newKey += document.getElementById("Imap").value;
-  newKey += document.getElementById("Jmap").value;
-  newKey += document.getElementById("Kmap").value;
-  newKey += document.getElementById("Lmap").value;
-  newKey += document.getElementById("Mmap").value;
-  newKey += document.getElementById("Nmap").value;
-  newKey += document.getElementById("Omap").value;
-  newKey += document.getElementById("Pmap").value;
-  newKey += document.getElementById("Qmap").value;
-  newKey += document.getElementById("Rmap").value;
-  newKey += document.getElementById("Smap").value;
-  newKey += document.getElementById("Tmap").value;
-  newKey += document.getElementById("Umap").value;
-  newKey += document.getElementById("Vmap").value;
-  newKey += document.getElementById("Wmap").value;
-  newKey += document.getElementById("Xmap").value;
-  newKey += document.getElementById("Ymap").value;
-  newKey += document.getElementById("Zmap").value;
-  document.getElementById("key").value = newKey;
-  
-  
-  
+  //alert("in decrypt()");
+  var key = getKey();
   
   //THIS IS ALL MESSED UP WITH CYPHER V. PLAIN, GO OVER IT CAREFULL
   var lowAlpha = "abcdefghijklmnopqrstuvwxyz";
   var upAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var key = document.getElementById("key").value;
   var plainText = "";
   var cypherText = document.getElementById("cypherText").value.toUpperCase();
   var index, random, nextChar;
-  var plainChar, cypherChar;
-  var location;
-  
-  //plaintext = plaintext.toUpperCase;
+  var plainChar, cypherChar, location;
   
   for(index=0;index<cypherText.length; index++){
     cypherChar = cypherText.charAt(index);
-    location = upAlpha.indexOf(cypherChar); 
+    location = upAlpha.indexOf(cypherChar);  // .indexOf is -1 for a non-upAlpha character
     if (location === -1){
-      plainText += cypherChar; // copy all non-aphabet char straight over
+      plainText += cypherChar; // copy all non-upAlpha char straight over
       } else {
         plainChar = key.charAt(location); // copy all alphabet chars via key
         plainText += plainChar;
@@ -89,7 +87,8 @@ function UseFrequencies(){
   var upAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var keyArray = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
   //var freqOrder = "etaoinshrdlcumwfgypbvkjxqz";   //Robert Lewand's Cryptological Mathematics
-  var freqOrder = "etoahinsrldwugfcymbpkvxqjz";      //Lewis Carrol, Alice in Wonderland
+  //var freqOrder = "etoahinsrldwugfcymbpkvxqjz";      //Lewis Carrol, Alice in Wonderland
+  var freqOrder = document.getElementById("frequencyOrder").value;
   var thisFreq = "";
   var freqOrderarray = "";
   var freqCount   = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];   
@@ -100,6 +99,7 @@ function UseFrequencies(){
   var cypherChar = "";
   var text = "SHOWING STATS FOR TESTING:   \n";
   
+  // Count how many times each character occurs.
   for(index=0;index<cypherText.length; index++){
     cypherChar = cypherText.charAt(index);
     location = upAlpha.indexOf(cypherChar);
@@ -121,23 +121,17 @@ function UseFrequencies(){
   if (repeat > 0){
     text += "had same frequency.  You'll need to adjust those.\n";
   }
-    
-      
-  
-    
+  //Make a list of character counts sorted to line up against the standard order.  
   freqCountSort = freqCount.slice();
   freqCountSort.sort( function(a,b) {return a-b;} );
   freqCountSort.reverse(); //freqCountSort is now the Counts in order
-  //
   
-    
-  
-  
+  //find the letter matching each count (in order) and make the key point at it.
   for(index=0;index<26; index++){
     var count = freqCountSort[index];
     var where = freqCount.indexOf(count);
     keyArray[where] = freqOrder.charAt(index);
-    thisFreq += lowAlpha[where];
+    thisFreq += lowAlpha[where];  //for display during testing.
     /*
     text += index + "\n " + index + "\n " + 
             "\n count: " + count +
@@ -146,16 +140,15 @@ function UseFrequencies(){
             "\n\n";
     */
     }
-  text += "thisFreq: " + thisFreq + "\n";  
-  var newKey = keyArray.join('');  
     
-  text +=     "freqCount is    " + freqCount + "\n" 
-            + "freqCountSort is: " + freqCountSort + "\n" 
-            + "freqOrderarray is: " + freqOrderarray + "\n" 
-            + "newKey is: " + newKey;
+  //for display during testing.  
+  text  += "thisFreq: " + thisFreq + "\n"
+          +"freqCount is    " + freqCount + "\n" 
+          + "freqCountSort is: " + freqCountSort + "\n" 
+          + "freqOrderarray is: " + freqOrderarray + "\n" 
+          + "new Key is: " + keyArray ;
   
   document.getElementById("plainText").value = text;
-  document.getElementById("key").value = newKey;
   
   document.getElementById("Amap").value = keyArray[0];
   document.getElementById("Bmap").value = keyArray[1];
@@ -183,13 +176,6 @@ function UseFrequencies(){
   document.getElementById("Xmap").value = keyArray[23];
   document.getElementById("Ymap").value = keyArray[24];
   document.getElementById("Zmap").value = keyArray[25];
-  
-  
-  
-  
-  
-  
-  
 }
 
 
@@ -219,13 +205,13 @@ function destroyClickedElement(event)
     document.body.removeChild(event.target);
 }                 
 
-
+/*
+ * Turned out we don't need this as a separate button, incorporated into decrypt()
+ * but not deleted (yet)
+ 
 function setKey(){
-  var lowAlpha = "abcdefghijklmnopqrstuvwxyz";
-  var upAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var key = "";
-  var k = "";
-   
+  var k = "";   
   k = document.getElementById("Amap").value; key += k;
   k = document.getElementById("Bmap").value; key += k;
   k = document.getElementById("Cmap").value; key += k;
@@ -253,9 +239,9 @@ function setKey(){
   k = document.getElementById("Ymap").value; key += k;
   k = document.getElementById("Zmap").value; key += k;
   
-  
   document.getElementById("key").value = key;
 }
+*/
 
 function reset(){
   //alert("in reset");
