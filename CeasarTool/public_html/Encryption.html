@@ -62,17 +62,17 @@ https://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-
               maxlength="26" >
       <button onclick="randomize()">Randomize</button>
     </td>
-    <td>
-      <input  id="offset" 
-              value ="0"
-              style="width:15px;" >
-      <button onclick="offset()">Offset</button>
-    </td>
+  </tr>
+  <tr>
+     <td>
+        Offset (between 0 and 25):
+        <input type="number" id = "offset" style = "width:40px" min="0" max="25">
+        <button onclick = "offset()">Offset</button>
+    </td> 
     <td>
       <button onclick="encrypt()">Encrypt</button>
-    </td>
+    </td>  
   </tr>
-  
   <tr>
     <td>Cypher text:
     </td>
@@ -92,7 +92,7 @@ https://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-
   
   <tr>
     <td>Filename to Save As:
-    <input id="saveAs"></input></td>
+    <input id="saveAs"/></td>
     <td><button onclick="saveAs()">Save Cypher</button></td>
   </tr>
 </table>
