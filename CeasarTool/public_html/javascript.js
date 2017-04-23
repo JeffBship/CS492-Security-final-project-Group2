@@ -307,8 +307,8 @@ function bruteForce(){
   var mispelled=0;
   for(cock = 0; cock < 26; cock++){
     decrypt();
-    //mispelled = spellCheck();
-    mispelled = localStorage.getItem("wordCount");
+    spellCheck();
+    mispelled = document.getElementById("count").value;
     alert(" mispelled = " + mispelled);
     var keyArray2 = [];
     var x;
