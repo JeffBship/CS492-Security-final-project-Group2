@@ -348,7 +348,7 @@ function bruteForce(){
     }
     alert("minkey is"+minKey);
     setKey(minKey);
-    
+    decrypt();
     
     
     

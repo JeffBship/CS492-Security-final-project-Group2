@@ -43,7 +43,6 @@ function offset(){
 }
 
 
-
 function encrypt(){
   var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var lowAlpha = "abcdefghijklmnopqrstuvwxyz";
