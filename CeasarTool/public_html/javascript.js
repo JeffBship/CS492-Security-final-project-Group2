@@ -274,6 +274,7 @@ function binarySearch(arr, key){
 
 
 function spellCheck(){
+  alert("in spellcheckat beginning");
   getdic();
   //alert("hey asshole, hold on a few seconds, this is a really big dic");
 // Retrieve
@@ -305,7 +306,9 @@ function spellCheck(){
     }
     alert("wordCount  " +  wordCount); 
     localStorage.setItem("wordCount", wordCount);
-    return wordCount;
+    
+    alert("in spellcheck before return");
+    //return wordCount;
        
    }
 
@@ -317,16 +320,16 @@ function bruteForce(){
   for(cock = 0; cock < 26; cock++){
     decrypt();
     //mispelled = spellCheck();
-    //mispelled = localStorage.getItem("wordCount");
-    alert(mispelled);
+    mispelled = localStorage.getItem("wordCount");
+    alert(" mispelled = " + mispelled);
     var keyArray2 = [];
     var x;
-    var temp = keyArray[0];
+    var temp = keyArray[25];
     for (x=0;x<25;x++){
       //alert("I am there  "  +  x);
-      keyArray2[x] = keyArray[x+1];
+      keyArray2[x+1] = keyArray[x];
       }
-    keyArray2[25]=temp;
+    keyArray2[0]=temp;
     keyArray = keyArray2;
     setKey(keyArray);
     alert("cock = " + cock);
