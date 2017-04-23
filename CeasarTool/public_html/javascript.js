@@ -264,7 +264,6 @@ function binarySearch(arr, key){
 
 
 function spellCheck(){
-  alert("in spellcheckat beginning");
   getdic();
   var result = localStorage.getItem("words");
   //alert(result);
@@ -272,7 +271,7 @@ function spellCheck(){
   var wordCount = 0;
   var word = "";
   var text = document.getElementById("plainText").value;
-  alert(text);
+  //alert(text);
   var re = /\r/gi;
   var s1 = text.replace(re,"~");
   var s2 = s1.replace( / /gi,"~");
@@ -289,27 +288,29 @@ function spellCheck(){
         } 
       }
     }
-    alert("wordCount  " +  wordCount); 
+    //alert("wordCount  " +  wordCount); 
     //localStorage.setItem("wordCount", wordCount);
     //var test = localStorage.etItem("wordCount");
     document.getElementById("count").value = wordCount;
     var test = document.getElementById("count").value;
-    alert("test is " + test);
+   // alert("test is " + test);
     //return wordCount;
        
    }
 
 //will just print out key along with number of mispellings for now...
 function bruteForce(){
-  var keyArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+  var keyArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'], mis = [], keyOff = [];
+  var key='';
   setKey(keyArray);
-  alert("I am here");
+ // alert("I am here");
   var mispelled=0;
   for(cock = 0; cock < 26; cock++){
     decrypt();
     spellCheck();
     mispelled = document.getElementById("count").value;
-    alert(" mispelled = " + mispelled);
+    mis.push(mispelled);
+    //alert(" mispelled = " + mispelled);
     var keyArray2 = [];
     var x;
     var temp = keyArray[25];
@@ -319,13 +320,19 @@ function bruteForce(){
       }
     keyArray2[0]=temp;
     keyArray = keyArray2;
+    for(index = 0; index<26;index++){
+        key+=keyArray[index];
+    }
+    keyOff.push(key);
+    key='';
     setKey(keyArray);
-    alert("cock = " + cock);
     
-   
-    
-    
+    //alert("cock = " + cock);
     }  
+    alert("KeyOFF IS " + keyOff);
+    alert("Mispelled iS " + mis);
+    
+    
 }
 
 /*
