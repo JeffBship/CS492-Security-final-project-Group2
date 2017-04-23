@@ -308,7 +308,7 @@ function bruteForce(){
   for(cock = 0; cock < 26; cock++){
     decrypt();
     spellCheck();
-    mispelled = document.getElementById("count").value;
+    mispelled = parseInt( document.getElementById("count").value ) ;
     mis.push(mispelled);
     //alert(" mispelled = " + mispelled);
     var keyArray2 = [];
@@ -320,6 +320,7 @@ function bruteForce(){
       }
     keyArray2[0]=temp;
     keyArray = keyArray2;
+    
     for(index = 0; index<26;index++){
         key+=keyArray[index];
     }
@@ -340,7 +341,18 @@ function bruteForce(){
             min=mis[index];
         }
     }
-    alert("Lowest number of mispelled words is " + min + "With key " + keyOff[minIndex] );
+    var keyOriginal = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+    var minKey = [];
+    for(var k=0;k<26;k++){
+      minKey[k] = keyOriginal[ (k-minIndex+26)%26 ];
+    }
+    alert("minkey is"+minKey);
+    setKey(minKey);
+    
+    
+    
+    
+    alert("Lowest number of mispelled words is " + min + "With minIndex " + minIndex );
     alert("KeyOFF IS " + keyOff);
     alert("Mispelled iS " + mis);
     
