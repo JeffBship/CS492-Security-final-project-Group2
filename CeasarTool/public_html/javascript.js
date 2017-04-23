@@ -240,42 +240,37 @@ function getdic(){
 // http://www.roseindia.net/java/javascript-array/javascript-array-binary-search.shtml
 // No author name given
 function binarySearch(arr, key){
+  var result = 0;
+  var strMid;
+  var strKey;
   var left = 0;
   var right = arr.length - 1;
-  while (left <= right){
-    var mid = parseInt((left + right)/2);
-    alert("mid is " + mid);
-    if ( arr[mid].toUpperCase() === key.toUpperCase()) {  
-      alert("I found it");
-      return mid;
-      break;
-      } else if (arr[mid].toUpperCase() < key.toUpperCase()){ 
-        // Apparently javascript thinks "a" < "z"
-        alert('arr[mid].toUpperCase() > key.toUpperCase()');
-        left = mid + 1;
-      } else {
-        alert('else {');
-      right = mid - 1;
-      }
-    }
-    return -1;
-}
-
-function linearSearch(arr,key){
-  var index = 0;
-  var result = 0;
-  for (index=0;index<arr.length;index++){
-    //alert(arr[index].toUpperCase() + " ??? === ??? " + key.toUpperCase());
-    //var n = arr[index].localeCompare(key);
-    //alert("n = " + n);
-    if (  String(arr[index].trim()).valueOf() === String(key.trim()).valueOf()) {
-      alert("they're equal");
+  var mid;
+  while ((left <= right) && (result === 0) ) {
+    mid = parseInt((left + right)/2);
+    //alert("mid is " + mid);
+    
+    strMid = arr[mid].trim().toUpperCase();
+    strKey = key.trim().toUpperCase();
+    
+    //alert(" strMid" + strMid +"    strKey" + strKey );
+    
+    if (String(strMid).valueOf() === String(strKey).valueOf()) {
+      //alert("I found it");
       result = 1;
-      }
-  }  
-  return result;   
+      
+      } else if (String(strMid).valueOf() < String(strKey).valueOf()) {
+        // Apparently javascript thinks "a" < "z"
+        //alert('arr[mid].toUpperCase() > key.toUpperCase()');
+        left = mid + 1;
+        } else {
+        //alert('else {');
+        right = mid - 1;
+        }
+    }
+    //alert("result is " + result);
+    return result;
 }
-
 
 
 function spellCheck(){
@@ -283,25 +278,34 @@ function spellCheck(){
   alert("hey asshole, hold on a few seconds, this is a really big dic");
 // Retrieve
   var result = localStorage.getItem("words");
-  alert(result);
+  //alert(result);
   var dictArray = result.split("\r");
   //document.getElementById("plainText").value= dictArray;
-  alert(dictArray[300]);
+  //alert(dictArray[300]);
   
-   var wordCount = 0;
-   var word = "";
-   var text = document.getElementById("plainText").value;
-   var index;
-   var textArr = text.split(' ');
-   var textLength = textArr.length;
-   for(index = 0; index<textLength; index++){
-     alert("searching for" + textArr[index]);
-      if (linearSearch(dictArray, textArr[index]) !== 1) {
+  var wordCount = 0;
+  var word = "";
+  var text = document.getElementById("plainText").value;
+  
+  var re = /\r/gi;
+  var s1 = text.replace(re,"~");
+  var s2 = s1.replace( / /gi,"~");
+  
+  var index;
+  var textArr = s2.split('~');
+  var textLength = textArr.length;
+  for(index = 0; index<textLength; index++){
+     //alert("searching for" + textArr[index]);
+    if (textArr[index].length>0){
+      if (binarySearch(dictArray, textArr[index]) === 0) {
+        //do nothing
         wordCount++;
-        }
-     }
-    alert("wordCount  " +  wordCount); 
+        } 
+      }
+    }
      
+    alert("wordCount  " +  wordCount); 
+    localStorage.setItem("wordCount", wordCount);
        
    }
        /*
@@ -315,6 +319,15 @@ function spellCheck(){
     //wordCount++;
     //alert("word count is NOW " + wordCount);
 
+function bruteForce(){
+  //loop through offset 0-25
+  //spellcheck each one
+  // if result < curren max, then bestoffset = current value
+  
+  var result = localStorage.getItem("words");
+  
+  // put the best one in the display box.
+}
 
 
 /*
