@@ -215,11 +215,7 @@ function destroyClickedElement(event)
 }
 
 
-function bruteForce(){
-    
-    
-    
-}
+
 
 
 //Modify to check word against a dictionary 
@@ -309,7 +305,7 @@ function spellCheck(){
     }
     alert("wordCount  " +  wordCount); 
     localStorage.setItem("wordCount", wordCount);
-    //return wordCount;
+    return wordCount;
        
    }
 
@@ -317,8 +313,12 @@ function spellCheck(){
 function bruteForce(){
   var keyArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
   alert("I am here");
- 
+  var mispelled=0;
   for(cock = 0; cock < 26; cock++){
+    decrypt();
+    //mispelled = spellCheck();
+    //mispelled = localStorage.getItem("wordCount");
+    alert(mispelled);
     var keyArray2 = [];
     var x;
     var temp = keyArray[0];
@@ -331,8 +331,7 @@ function bruteForce(){
     setKey(keyArray);
     alert("cock = " + cock);
     
-    //decrypt
-    //spellcheck
+   
     
     
     }  
