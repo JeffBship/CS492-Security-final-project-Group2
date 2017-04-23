@@ -237,15 +237,56 @@ function getdic(){
 
 
 
+// http://www.roseindia.net/java/javascript-array/javascript-array-binary-search.shtml
+// No author name given
+function binarySearch(arr, key){
+  var left = 0;
+  var right = arr.length - 1;
+  while (left <= right){
+    var mid = parseInt((left + right)/2);
+    alert("mid is " + mid);
+    if ( arr[mid].toUpperCase() === key.toUpperCase()) {  
+      alert("I found it");
+      return mid;
+      break;
+      } else if (arr[mid].toUpperCase() < key.toUpperCase()){ 
+        // Apparently javascript thinks "a" < "z"
+        alert('arr[mid].toUpperCase() > key.toUpperCase()');
+        left = mid + 1;
+      } else {
+        alert('else {');
+      right = mid - 1;
+      }
+    }
+    return -1;
+}
+
+function linearSearch(arr,key){
+  var index = 0;
+  var result = 0;
+  for (index=0;index<arr.length;index++){
+    //alert(arr[index].toUpperCase() + " ??? === ??? " + key.toUpperCase());
+    //var n = arr[index].localeCompare(key);
+    //alert("n = " + n);
+    if (  String(arr[index].trim()).valueOf() === String(key.trim()).valueOf()) {
+      alert("they're equal");
+      result = 1;
+      }
+  }  
+  return result;   
+}
+
+
+
 function spellCheck(){
   getdic();
   alert("hey asshole, hold on a few seconds, this is a really big dic");
 // Retrieve
   var result = localStorage.getItem("words");
   alert(result);
-  var resultArray = result.split("\r");
-  document.getElementById("plainText").value= resultArray;
-  alert(resultArray[300]);
+  var dictArray = result.split("\r");
+  //document.getElementById("plainText").value= dictArray;
+  alert(dictArray[300]);
   
    var wordCount = 0;
    var word = "";
@@ -254,7 +295,13 @@ function spellCheck(){
    var textArr = text.split(' ');
    var textLength = textArr.length;
    for(index = 0; index<textLength; index++){
-       //alert("Inside loop " + textArr[index]);
+     alert("searching for" + textArr[index]);
+      if (linearSearch(dictArray, textArr[index]) !== 1) {
+        wordCount++;
+        }
+     }
+    alert("wordCount  " +  wordCount); 
+     
        
    }
        /*
@@ -265,9 +312,10 @@ function spellCheck(){
        
     
     //if(isInDict = $Spelling.BinSpellCheck('word'))
-    wordCount++;
-   //alert("word count is NOW " + wordCount);
-}
+    //wordCount++;
+    //alert("word count is NOW " + wordCount);
+
+
 
 /*
  * Turned out we don't need this as a separate button, incorporated into decrypt()
