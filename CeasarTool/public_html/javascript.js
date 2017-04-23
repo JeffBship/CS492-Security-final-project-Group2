@@ -11,6 +11,10 @@
 //var freqPercent = {12.702,9.056,8.167,7.507,6.966,6.749,6.327,6.094,5.987,4.253,4.025,2.782,2.758,
 //                  2.406,2.360,2.228,2.015,1.974,1.929,1.492,0.978,0.772,0.153,0.150,0.095,0.074};
                  
+                 
+                 
+                 
+                 
 function loadFile(){
   //alert("in load file");
   var cypherfile = document.getElementById("cypherToLoad").files[0];
@@ -215,26 +219,34 @@ function bruteForce(){
 
 
 //Modify to check word against a dictionary 
+var dicString;
+var dicArray;
+var junk;
+
+function getdic(){
+  var cypherfile = document.getElementById("DicFile").files[0];
+  var fileReader = new FileReader();
+  fileReader.onload = function(fileLoadedEvent) 
+  {
+    dicString = fileLoadedEvent.target.result;
+    //document.getElementById("dictionary").value = dicString;
+    localStorage.setItem("words", dicString);
+  };
+  fileReader.readAsText(cypherfile, "UTF-8");
+}
+
+
+
 function spellCheck(){
-    alert("DIPSHIT");
-    var fileToLoad = document.getElementById("fileToLoad").files[0];
-    alert("DIPSHIT");
-    var fileReader = new FileReader();
-    var dic;
-    alert("DIPSHIT");
-    fileReader.onload = function(fileLoadedEvent) 
-    {
-        alert("DIPSHIT");
-        var textFromFileLoaded = fileLoadedEvent.target.result;
-        dic = textFromFileLoaded;
-        alert("DIPSHIT");
-    };
-    alert("DIPSHIT");
-    fileReader.readAsText(fileToLoad, "UTF-8");
-    alert("DIPSHIT");
-    
-   dic = textFromFileLoeaded.split(' ');
-   alert(dic[0]);
+  getdic();
+  alert("hey asshole, hold on a few seconds, this is a really big dic");
+// Retrieve
+  var result = localStorage.getItem("words");
+  alert(result);
+  var resultArray = result.split("\r");
+  document.getElementById("plainText").value= resultArray;
+  alert(resultArray[300]);
+  
    var wordCount = 0;
    var word = "";
    var text = document.getElementById("plainText").value;
@@ -242,7 +254,7 @@ function spellCheck(){
    var textArr = text.split(' ');
    var textLength = textArr.length;
    for(index = 0; index<textLength; index++){
-       alert("Inside loop " + textArr[index]);
+       //alert("Inside loop " + textArr[index]);
        
    }
        /*
@@ -254,7 +266,7 @@ function spellCheck(){
     
     //if(isInDict = $Spelling.BinSpellCheck('word'))
     wordCount++;
-   alert("word count is NOW " + wordCount);
+   //alert("word count is NOW " + wordCount);
 }
 
 /*
