@@ -248,27 +248,17 @@ function binarySearch(arr, key){
   var mid;
   while ((left <= right) && (result === 0) ) {
     mid = parseInt((left + right)/2);
-    //alert("mid is " + mid);
-    
     strMid = arr[mid].trim().toUpperCase();
     strKey = key.trim().toUpperCase();
-    
-    //alert(" strMid" + strMid +"    strKey" + strKey );
-    
     if (String(strMid).valueOf() === String(strKey).valueOf()) {
       //alert("I found it");
       result = 1;
-      
       } else if (String(strMid).valueOf() < String(strKey).valueOf()) {
-        // Apparently javascript thinks "a" < "z"
-        //alert('arr[mid].toUpperCase() > key.toUpperCase()');
         left = mid + 1;
         } else {
-        //alert('else {');
         right = mid - 1;
         }
     }
-    //alert("result is " + result);
     return result;
 }
 
@@ -276,14 +266,9 @@ function binarySearch(arr, key){
 function spellCheck(){
   alert("in spellcheckat beginning");
   getdic();
-  //alert("hey asshole, hold on a few seconds, this is a really big dic");
-// Retrieve
   var result = localStorage.getItem("words");
   //alert(result);
   var dictArray = result.split("\r");
-  //document.getElementById("plainText").value= dictArray;
-  //alert(dictArray[300]);
-  
   var wordCount = 0;
   var word = "";
   var text = document.getElementById("plainText").value;
@@ -305,9 +290,11 @@ function spellCheck(){
       }
     }
     alert("wordCount  " +  wordCount); 
-    localStorage.setItem("wordCount", wordCount);
-    
-    alert("in spellcheck before return");
+    //localStorage.setItem("wordCount", wordCount);
+    //var test = localStorage.etItem("wordCount");
+    document.getElementById("count").value = wordCount;
+    var test = document.getElementById("count").value;
+    alert("test is " + test);
     //return wordCount;
        
    }
@@ -315,6 +302,7 @@ function spellCheck(){
 //will just print out key along with number of mispellings for now...
 function bruteForce(){
   var keyArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+  setKey(keyArray);
   alert("I am here");
   var mispelled=0;
   for(cock = 0; cock < 26; cock++){
