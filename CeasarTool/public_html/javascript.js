@@ -275,7 +275,7 @@ function binarySearch(arr, key){
 
 function spellCheck(){
   getdic();
-  alert("hey asshole, hold on a few seconds, this is a really big dic");
+  //alert("hey asshole, hold on a few seconds, this is a really big dic");
 // Retrieve
   var result = localStorage.getItem("words");
   //alert(result);
@@ -286,7 +286,7 @@ function spellCheck(){
   var wordCount = 0;
   var word = "";
   var text = document.getElementById("plainText").value;
-  
+  alert(text);
   var re = /\r/gi;
   var s1 = text.replace(re,"~");
   var s2 = s1.replace( / /gi,"~");
@@ -303,32 +303,70 @@ function spellCheck(){
         } 
       }
     }
-     
     alert("wordCount  " +  wordCount); 
     localStorage.setItem("wordCount", wordCount);
+    //return wordCount;
        
    }
-       /*
-        if(text.charAt(index)== " "){
-            wordCount++;
-        }
-        */
-       
-    
-    //if(isInDict = $Spelling.BinSpellCheck('word'))
-    //wordCount++;
-    //alert("word count is NOW " + wordCount);
 
+//will just print out key along with number of mispellings for now...
 function bruteForce(){
   //loop through offset 0-25
   //spellcheck each one
   // if result < curren max, then bestoffset = current value
+  var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var thisFreq = "";
+  var offsetKey = "";
+  var offset = 0;
+  var plainText = document.getElementById("plainText").value;
+  var index, cock, keyIndex, nextChar;
   
-  var result = localStorage.getItem("words");
+  //arrays to hold keys, #mispelledWords, freq, and index of the best 
+  var keyArr = [], mispelled = [], m = 0; index = [];
+  
+  alert("I am here");
+  for(cock = 0; cock < 26; cock++){
+  //It doesn't like negative numbers for offset
+  //Need to reset the alphabet after deleting out its entries
+      alert("First Loop");
+      keyIndex=0;
+      offsetKey = '';
+      alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      offset = cock;
+      alert("Cock is "+ cock);
+  while (offset<0) offset += 26;
+  
+    for(index=0;index<26; index++){
+      //this picks a random char from aphabet, adds it to key, and deletes it from alphabet
+      keyIndex = ( index + offset) % 26;
+      offsetKey += alphabet.charAt(keyIndex);
+      alert("Index is" + index);
+      }
+      
+      alert("out of loop");
+      alert(keyIndex);
+      alert(offsetKey);
+      keyArr.push(offsetKey);
+      alter("About to spellcheck");
+      m = spellCheck();
+      alert("spellcheck complete");
+      mispelled.push(m);
+      alert("push into array");
+      alert("Key Array is " + keyArr);
+      //alert("# of Mispelled Words for each element in key array " + mispelled);
+
+    //document.getElementById("plainText").value = ???; 
   
   // put the best one in the display box.
-}
+  }
+  
+  alert("Key Array is " + keyArr);
+  alert("# of Mispelled Words for each element in key array " + mispelled);
 
+  
+  
+  
+}
 
 /*
  * Turned out we don't need this as a separate button, incorporated into decrypt()
