@@ -17,8 +17,14 @@ https://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheet.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type='text/javascript' src='/JavaScriptSpellCheck/include.js' ></script>
+    
     <script src="javascript.js"></script>
     <script src="javascript2.js"></script>
+    
+   
   </head>
 <body>
 <font size="6" face="verdana">Ceasar Tool: Simple Sub cryptanalyzer</font>  
@@ -36,7 +42,7 @@ https://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-
       <!-- This is just for spacing  -->
     </td>
     <td rowspan="8" width="20"  >
-      <font size = 4>
+      <font size = 3>
       A   <br>
       B   <br>
       C   <br>
@@ -132,7 +138,10 @@ https://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-
   </tr>
   <tr>
     <td>
-      <textarea id="plainText" cols="80" rows="8"></textarea>
+      <textarea name ="plainText" id="plainText" cols="80" rows="8"></textarea>
+       <input type="file" id="fileToLoad">
+       <button onclick="spellCheck()">Spell Check</button>
+      <!--<button onclick="spellCheck()">Spell Check</button> -->
     </td>
   </tr>
   

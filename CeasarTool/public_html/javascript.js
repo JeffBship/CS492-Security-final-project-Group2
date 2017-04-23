@@ -5,6 +5,7 @@
  */
 
 
+
 //var freqOrder   = {'e','t','a','o','i','n','s','h','r','d','l','c','u',
 //                   'm','w','f','g','y','p','b','v','k','j','x','q','z'};
 //var freqPercent = {12.702,9.056,8.167,7.507,6.966,6.749,6.327,6.094,5.987,4.253,4.025,2.782,2.758,
@@ -203,7 +204,58 @@ function saveAs()
 function destroyClickedElement(event)
 {
     document.body.removeChild(event.target);
-}                 
+}
+
+
+function bruteForce(){
+    
+    
+    
+}
+
+
+//Modify to check word against a dictionary 
+function spellCheck(){
+    alert("DIPSHIT");
+    var fileToLoad = document.getElementById("fileToLoad").files[0];
+    alert("DIPSHIT");
+    var fileReader = new FileReader();
+    var dic;
+    alert("DIPSHIT");
+    fileReader.onload = function(fileLoadedEvent) 
+    {
+        alert("DIPSHIT");
+        var textFromFileLoaded = fileLoadedEvent.target.result;
+        dic = textFromFileLoaded;
+        alert("DIPSHIT");
+    };
+    alert("DIPSHIT");
+    fileReader.readAsText(fileToLoad, "UTF-8");
+    alert("DIPSHIT");
+    
+   dic = textFromFileLoeaded.split(' ');
+   alert(dic[0]);
+   var wordCount = 0;
+   var word = "";
+   var text = document.getElementById("plainText").value;
+   var index;
+   var textArr = text.split(' ');
+   var textLength = textArr.length;
+   for(index = 0; index<textLength; index++){
+       alert("Inside loop " + textArr[index]);
+       
+   }
+       /*
+        if(text.charAt(index)== " "){
+            wordCount++;
+        }
+        */
+       
+    
+    //if(isInDict = $Spelling.BinSpellCheck('word'))
+    wordCount++;
+   alert("word count is NOW " + wordCount);
+}
 
 /*
  * Turned out we don't need this as a separate button, incorporated into decrypt()
