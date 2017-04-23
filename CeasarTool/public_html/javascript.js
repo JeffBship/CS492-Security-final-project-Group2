@@ -300,7 +300,7 @@ function spellCheck(){
 
 //will just print out key along with number of mispellings for now...
 function bruteForce(){
-  var keyArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'], mis = [], keyOff = [];
+  var keyArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'], mis = [] , keyOff = [];
   var key='';
   setKey(keyArray);
  // alert("I am here");
@@ -329,6 +329,18 @@ function bruteForce(){
     
     //alert("cock = " + cock);
     }  
+    
+    //FIND ABSOLUTE MINIMUM
+    var minIndex=0;
+    var min = mis[0];
+    var index;
+    for(index=0; index<26; index++){
+        if(mis[index]< min){
+            minIndex=index;
+            min=mis[index];
+        }
+    }
+    alert("Lowest number of mispelled words is " + min + "With key " + keyOff[minIndex] );
     alert("KeyOFF IS " + keyOff);
     alert("Mispelled iS " + mis);
     
