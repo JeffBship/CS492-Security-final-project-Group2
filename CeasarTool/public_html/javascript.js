@@ -58,6 +58,35 @@ function getKey(){
   return key;
 }
 
+function setKey(setArray){
+  document.getElementById("Amap").value = setArray[0];
+  document.getElementById("Bmap").value = setArray[1];
+  document.getElementById("Cmap").value = setArray[2];
+  document.getElementById("Dmap").value = setArray[3];
+  document.getElementById("Emap").value = setArray[4];
+  document.getElementById("Fmap").value = setArray[5];
+  document.getElementById("Gmap").value = setArray[6];
+  document.getElementById("Hmap").value = setArray[7];
+  document.getElementById("Imap").value = setArray[8];
+  document.getElementById("Jmap").value = setArray[9];
+  document.getElementById("Kmap").value = setArray[10];
+  document.getElementById("Lmap").value = setArray[11];
+  document.getElementById("Mmap").value = setArray[12];
+  document.getElementById("Nmap").value = setArray[13];
+  document.getElementById("Omap").value = setArray[14];
+  document.getElementById("Pmap").value = setArray[15];
+  document.getElementById("Qmap").value = setArray[16];
+  document.getElementById("Rmap").value = setArray[17];
+  document.getElementById("Smap").value = setArray[18];
+  document.getElementById("Tmap").value = setArray[19];
+  document.getElementById("Umap").value = setArray[20];
+  document.getElementById("Vmap").value = setArray[21];
+  document.getElementById("Wmap").value = setArray[22];
+  document.getElementById("Xmap").value = setArray[23];
+  document.getElementById("Ymap").value = setArray[24];
+  document.getElementById("Zmap").value = setArray[25];
+}
+
 
 function decrypt(){
   //alert("in decrypt()");
@@ -155,32 +184,7 @@ function UseFrequencies(){
   
   document.getElementById("plainText").value = text;
   
-  document.getElementById("Amap").value = keyArray[0];
-  document.getElementById("Bmap").value = keyArray[1];
-  document.getElementById("Cmap").value = keyArray[2];
-  document.getElementById("Dmap").value = keyArray[3];
-  document.getElementById("Emap").value = keyArray[4];
-  document.getElementById("Fmap").value = keyArray[5];
-  document.getElementById("Gmap").value = keyArray[6];
-  document.getElementById("Hmap").value = keyArray[7];
-  document.getElementById("Imap").value = keyArray[8];
-  document.getElementById("Jmap").value = keyArray[9];
-  document.getElementById("Kmap").value = keyArray[10];
-  document.getElementById("Lmap").value = keyArray[11];
-  document.getElementById("Mmap").value = keyArray[12];
-  document.getElementById("Nmap").value = keyArray[13];
-  document.getElementById("Omap").value = keyArray[14];
-  document.getElementById("Pmap").value = keyArray[15];
-  document.getElementById("Qmap").value = keyArray[16];
-  document.getElementById("Rmap").value = keyArray[17];
-  document.getElementById("Smap").value = keyArray[18];
-  document.getElementById("Tmap").value = keyArray[19];
-  document.getElementById("Umap").value = keyArray[20];
-  document.getElementById("Vmap").value = keyArray[21];
-  document.getElementById("Wmap").value = keyArray[22];
-  document.getElementById("Xmap").value = keyArray[23];
-  document.getElementById("Ymap").value = keyArray[24];
-  document.getElementById("Zmap").value = keyArray[25];
+  setKey(keyArray);
 }
 
 
@@ -311,61 +315,27 @@ function spellCheck(){
 
 //will just print out key along with number of mispellings for now...
 function bruteForce(){
-  //loop through offset 0-25
-  //spellcheck each one
-  // if result < curren max, then bestoffset = current value
-  var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var thisFreq = "";
-  var offsetKey = "";
-  var offset = 0;
-  var plainText = document.getElementById("plainText").value;
-  var index, cock, keyIndex, nextChar;
-  
-  //arrays to hold keys, #mispelledWords, freq, and index of the best 
-  var keyArr = [], mispelled = [], m = 0; index = [];
-  
+  var keyArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
   alert("I am here");
+ 
   for(cock = 0; cock < 26; cock++){
-  //It doesn't like negative numbers for offset
-  //Need to reset the alphabet after deleting out its entries
-      alert("First Loop");
-      keyIndex=0;
-      offsetKey = '';
-      alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-      offset = cock;
-      alert("Cock is "+ cock);
-  while (offset<0) offset += 26;
-  
-    for(index=0;index<26; index++){
-      //this picks a random char from aphabet, adds it to key, and deletes it from alphabet
-      keyIndex = ( index + offset) % 26;
-      offsetKey += alphabet.charAt(keyIndex);
-      alert("Index is" + index);
+    var keyArray2 = [];
+    var x;
+    var temp = keyArray[0];
+    for (x=0;x<25;x++){
+      //alert("I am there  "  +  x);
+      keyArray2[x] = keyArray[x+1];
       }
-      
-      alert("out of loop");
-      alert(keyIndex);
-      alert(offsetKey);
-      keyArr.push(offsetKey);
-      alter("About to spellcheck");
-      m = spellCheck();
-      alert("spellcheck complete");
-      mispelled.push(m);
-      alert("push into array");
-      alert("Key Array is " + keyArr);
-      //alert("# of Mispelled Words for each element in key array " + mispelled);
-
-    //document.getElementById("plainText").value = ???; 
-  
-  // put the best one in the display box.
-  }
-  
-  alert("Key Array is " + keyArr);
-  alert("# of Mispelled Words for each element in key array " + mispelled);
-
-  
-  
-  
+    keyArray2[25]=temp;
+    keyArray = keyArray2;
+    setKey(keyArray);
+    alert("cock = " + cock);
+    
+    //decrypt
+    //spellcheck
+    
+    
+    }  
 }
 
 /*
