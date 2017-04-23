@@ -166,29 +166,20 @@ function UseFrequencies(){
     var where = freqCount.indexOf(count);
     keyArray[where] = freqOrder.charAt(index);
     thisFreq += lowAlpha[where];  //for display during testing.
-    /*
-    text += index + "\n " + index + "\n " + 
-            "\n count: " + count +
-            "\n  where" + where +
-            "\n freqOrder.charAt(index): " + freqOrder.charAt(index) + 
-            "\n\n";
-    */
+    
     }
     
   //for display during testing.  
-  text  += "thisFreq: " + thisFreq + "\n"
-          +"freqCount is    " + freqCount + "\n" 
-          + "freqCountSort is: " + freqCountSort + "\n" 
-          + "freqOrderarray is: " + freqOrderarray + "\n" 
-          + "new Key is: " + keyArray ;
+  text  += "new Key is: " + keyArray + "\n Click decrypt to try it.";
+  //
+  ////"thisFreq: " + thisFreq + "\n"
+          //+"freqCount is    " + freqCount + "\n" 
+          //+ "freqCountSort is: " + freqCountSort + "\n" 
+          //+ "freqOrderarray is: " + freqOrderarray + "\n" 
   
   document.getElementById("plainText").value = text;
-  
   setKey(keyArray);
 }
-
-
-
 
 function saveAs()
 {
@@ -346,15 +337,13 @@ function bruteForce(){
     for(var k=0;k<26;k++){
       minKey[k] = keyOriginal[ (k-minIndex+26)%26 ];
     }
-    alert("minkey is"+minKey);
+    //alert("minkey is"+minKey);
     setKey(minKey);
+    document.getElementById("count").value = mis[minIndex];
     decrypt();
-    
-    
-    
-    alert("Lowest number of mispelled words is " + min + "With minIndex " + minIndex );
-    alert("KeyOFF IS " + keyOff);
-    alert("Mispelled iS " + mis);
+    //alert("Lowest number of mispelled words is " + min + "With minIndex " + minIndex );
+    //alert("KeyOFF IS " + keyOff);
+    //alert("Mispelled iS " + mis);
     
     
 }
