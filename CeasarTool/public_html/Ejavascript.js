@@ -1,3 +1,10 @@
+/* 
+ * Adrian Ward-Manthey and Jeff Blankenship
+ * CS492 Final Project.
+ * Prof Williams
+ */
+
+
 function loadFile(){
   var plainfile = document.getElementById("fileToLoad").files[0];
   var fileReader = new FileReader();
