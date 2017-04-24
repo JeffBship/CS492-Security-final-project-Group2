@@ -16,17 +16,19 @@ h1 {
 }
 
 table, th, td,tr {
+    cellpadding:0px;
+    border-collapse: collapse;
     padding: 0px;
     padding-top: 0px;
     padding-bottom: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
-    border: 1px solid black;
+    border: 0px solid black;
 }
 
 .charBox{
-  width:15px;
-  height:14.5px;
+  width:12px;
+  height:10px;
 }
 
 textarea#key {

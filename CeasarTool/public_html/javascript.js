@@ -116,7 +116,8 @@ function decrypt(){
 
 
 function UseFrequencies(){
-  //alert("use freq");
+  
+  
   var lowAlpha = "abcdefghijklmnopqrstuvwxyz";
   var upAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var keyArray = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
@@ -178,6 +179,7 @@ function UseFrequencies(){
           //+ "freqOrderarray is: " + freqOrderarray + "\n" 
   
   document.getElementById("plainText").value = text;
+  alert("IN use freq");
   setKey(keyArray);
 }
 
