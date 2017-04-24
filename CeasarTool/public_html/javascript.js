@@ -140,10 +140,7 @@ function UseFrequencies(){
     location = upAlpha.indexOf(cypherChar);
     if (location >= 0) freqCount[location]++;
     }
-  //sometimes there are equal counts and it messes things up
-  //we might should add some sort of handler method for that
-  //like maybe if there are equals just make them both zero and map to '*' or something.
-  //Should only be an issue for small files. 
+    
   var repeat = 0;
   for (var i=0;i<25;i++){
     for(var j=i+1;j<25;j++){
@@ -160,26 +157,15 @@ function UseFrequencies(){
   freqCountSort = freqCount.slice();
   freqCountSort.sort( function(a,b) {return a-b;} );
   freqCountSort.reverse(); //freqCountSort is now the Counts in order
-  
   //find the letter matching each count (in order) and make the key point at it.
   for(index=0;index<26; index++){
     var count = freqCountSort[index];
     var where = freqCount.indexOf(count);
     keyArray[where] = freqOrder.charAt(index);
-    thisFreq += lowAlpha[where];  //for display during testing.
-    
+    thisFreq += lowAlpha[where]; 
     }
-    
-  //for display during testing.  
   text  += "new Key is: " + keyArray + "\n Click decrypt to try it.";
-  //
-  ////"thisFreq: " + thisFreq + "\n"
-          //+"freqCount is    " + freqCount + "\n" 
-          //+ "freqCountSort is: " + freqCountSort + "\n" 
-          //+ "freqOrderarray is: " + freqOrderarray + "\n" 
-  
   document.getElementById("plainText").value = text;
-  //alert("IN use freq");
   setKey(keyArray);
 }
 
@@ -206,10 +192,6 @@ function destroyClickedElement(event)
 {
     document.body.removeChild(event.target);
 }
-
-
-
-
 
 //Modify to check word against a dictionary 
 var dicString;
@@ -259,16 +241,12 @@ function binarySearch(arr, key){
 function spellCheck(){
   getdic();
   var result = localStorage.getItem("words");
-  //alert(result);
   var dictArray = result.split("\r");
-  var wordCount = 0;
-  var word = "";
+  var wordCount = 0; var word = "";
   var text = document.getElementById("plainText").value;
-  //alert(text);
   var re = /\r/gi;
   var s1 = text.replace(re,"~");
   var s2 = s1.replace( / /gi,"~");
-  
   var index;
   var textArr = s2.split('~');
   var textLength = textArr.length;
@@ -276,54 +254,39 @@ function spellCheck(){
      //alert("searching for" + textArr[index]);
     if (textArr[index].length>0){
       if (binarySearch(dictArray, textArr[index]) === 0) {
-        //do nothing
         wordCount++;
         } 
       }
     }
-    //alert("wordCount  " +  wordCount); 
-    //localStorage.setItem("wordCount", wordCount);
-    //var test = localStorage.etItem("wordCount");
     document.getElementById("count").value = wordCount;
     var test = document.getElementById("count").value;
-   // alert("test is " + test);
-    //return wordCount;
-       
    }
 
-//will just print out key along with number of mispellings for now...
 function bruteForce(){
   var keyArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'], mis = [] , keyOff = [];
   var key='';
   setKey(keyArray);
- // alert("I am here");
   var mispelled=0;
-  for(cock = 0; cock < 26; cock++){
+  for(c = 0; c < 26; c++){
     decrypt();
     spellCheck();
     mispelled = parseInt( document.getElementById("count").value ) ;
     mis.push(mispelled);
-    //alert(" mispelled = " + mispelled);
     var keyArray2 = [];
     var x;
     var temp = keyArray[25];
     for (x=0;x<25;x++){
-      //alert("I am there  "  +  x);
       keyArray2[x+1] = keyArray[x];
       }
     keyArray2[0]=temp;
     keyArray = keyArray2;
-    
     for(index = 0; index<26;index++){
         key+=keyArray[index];
     }
     keyOff.push(key);
     key='';
     setKey(keyArray);
-    
-    //alert("cock = " + cock);
     }  
-    
     //FIND ABSOLUTE MINIMUM
     var minIndex=0;
     var min = mis[0];
@@ -339,85 +302,12 @@ function bruteForce(){
     for(var k=0;k<26;k++){
       minKey[k] = keyOriginal[ (k-minIndex+26)%26 ];
     }
-    //alert("minkey is"+minKey);
     setKey(minKey);
     document.getElementById("count").value = mis[minIndex];
     decrypt();
-    //alert("Lowest number of mispelled words is " + min + "With minIndex " + minIndex );
-    //alert("KeyOFF IS " + keyOff);
-    //alert("Mispelled iS " + mis);
-    
-    
 }
-
-/*
- * Turned out we don't need this as a separate button, incorporated into decrypt()
- * but not deleted (yet)
- 
-function setKey(){
-  var key = "";
-  var k = "";   
-  k = document.getElementById("Amap").value; key += k;
-  k = document.getElementById("Bmap").value; key += k;
-  k = document.getElementById("Cmap").value; key += k;
-  k = document.getElementById("Dmap").value; key += k;
-  k = document.getElementById("Emap").value; key += k;
-  k = document.getElementById("Fmap").value; key += k;
-  k = document.getElementById("Gmap").value; key += k;
-  k = document.getElementById("Hmap").value; key += k;
-  k = document.getElementById("Imap").value; key += k;
-  k = document.getElementById("Jmap").value; key += k;
-  k = document.getElementById("Kmap").value; key += k;
-  k = document.getElementById("Lmap").value; key += k;
-  k = document.getElementById("Mmap").value; key += k;
-  k = document.getElementById("Nmap").value; key += k;
-  k = document.getElementById("Omap").value; key += k;
-  k = document.getElementById("Pmap").value; key += k;
-  k = document.getElementById("Qmap").value; key += k;
-  k = document.getElementById("Rmap").value; key += k;
-  k = document.getElementById("Smap").value; key += k;
-  k = document.getElementById("Tmap").value; key += k;
-  k = document.getElementById("Umap").value; key += k;
-  k = document.getElementById("Vmap").value; key += k;
-  k = document.getElementById("Wmap").value; key += k;
-  k = document.getElementById("Xmap").value; key += k;
-  k = document.getElementById("Ymap").value; key += k;
-  k = document.getElementById("Zmap").value; key += k;
-  
-  document.getElementById("key").value = key;
-}
-*/
 
 function reset(){
-  //alert("in reset");
-  document.getElementById("Amap").value = 'A';
-  document.getElementById("Bmap").value = 'B';
-  document.getElementById("Cmap").value = 'C';
-  document.getElementById("Dmap").value = 'D';
-  document.getElementById("Emap").value = 'E';
-  document.getElementById("Fmap").value = 'F';
-  document.getElementById("Gmap").value = 'G';
-  document.getElementById("Hmap").value = 'H';
-  document.getElementById("Imap").value = 'I';
-  document.getElementById("Jmap").value = 'J';
-  document.getElementById("Kmap").value = 'K';
-  document.getElementById("Lmap").value = 'L';
-  document.getElementById("Mmap").value = 'M';
-  document.getElementById("Nmap").value = 'N';
-  document.getElementById("Omap").value = 'O';
-  document.getElementById("Pmap").value = 'P';
-  document.getElementById("Qmap").value = 'Q';
-  document.getElementById("Rmap").value = 'R';
-  document.getElementById("Smap").value = 'S';
-  document.getElementById("Tmap").value = 'T';
-  document.getElementById("Umap").value = 'U';
-  document.getElementById("Vmap").value = 'V';
-  document.getElementById("Wmap").value = 'W';
-  document.getElementById("Xmap").value = 'X';
-  document.getElementById("Ymap").value = 'Y';
-  document.getElementById("Zmap").value = 'Z';
-  
-  //alert("end of reset");
-  
-  
+  var UpAlphaArray = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+  setKey(UpAlphaArray);
 }
