@@ -3,18 +3,7 @@
  * CS492 Final Project.
  * Prof Williams
  */
-
-
-
-//var freqOrder   = {'e','t','a','o','i','n','s','h','r','d','l','c','u',
-//                   'm','w','f','g','y','p','b','v','k','j','x','q','z'};
-//var freqPercent = {12.702,9.056,8.167,7.507,6.966,6.749,6.327,6.094,5.987,4.253,4.025,2.782,2.758,
-//                  2.406,2.360,2.228,2.015,1.974,1.929,1.492,0.978,0.772,0.153,0.150,0.095,0.074};
-                 
-                 
-                 
-                 
-                 
+        
 function loadFile(){
   //alert("in load file");
   var cypherfile = document.getElementById("cypherToLoad").files[0];
@@ -89,22 +78,16 @@ function setKey(setArray){
 
 
 function decrypt(){
-  //alert("in decrypt()");
   var key = getKey();
-  
-  //THIS IS ALL MESSED UP WITH CYPHER V. PLAIN, GO OVER IT CAREFULL
-  var lowAlpha = "abcdefghijklmnopqrstuvwxyz";
   var upAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var plainText = "";
   var cypherText = document.getElementById("cypherText").value.toUpperCase();
-  var index, random, nextChar;
   var plainChar, cypherChar, location;
-  
-  for(index=0;index<cypherText.length; index++){
+  for(var index=0;index<cypherText.length; index++){
     cypherChar = cypherText.charAt(index);
-    location = upAlpha.indexOf(cypherChar);  // .indexOf is -1 for a non-upAlpha character
-    if (location === -1){
-      plainText += cypherChar; // copy all non-upAlpha char straight over
+    location = upAlpha.indexOf(cypherChar);  
+    if (location === -1){       // .indexOf is -1 for a non-upAlpha character
+      plainText += cypherChar;  // copy all non-upAlpha char straight over
       } else {
         plainChar = key.charAt(location); // copy all alphabet chars via key
         plainText += plainChar;
