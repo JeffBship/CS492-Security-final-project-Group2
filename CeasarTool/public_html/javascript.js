@@ -179,7 +179,7 @@ function UseFrequencies(){
           //+ "freqOrderarray is: " + freqOrderarray + "\n" 
   
   document.getElementById("plainText").value = text;
-  alert("IN use freq");
+  //alert("IN use freq");
   setKey(keyArray);
 }
 
