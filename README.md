@@ -10,6 +10,8 @@ two interconnected HTML pages (links at the bottom of each page allows you to go
 pages). One page allows you to encrypt a text file while the other pages offers various options for decrypting a text
 file.
 
+To begin, run the file _index.html_ and click the link at the bottom to go to the encryption page.
+
 **Encryption:**<br>
 To encrypt a text file, you will need to be on that HTML page entitled “Ceasar Tool: Text file encrypter”.
 On the top of the page, click the “Choose File” button and select your desired text file from your computer. Click
